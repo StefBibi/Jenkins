@@ -8,13 +8,13 @@ node {
     }
     stage('build') {
         sh '''
-            cd 09_PluginGit
+            cd 17_Jenkinsfile
             javac Main.java
         '''
     } 
     stage('run') {
         sh '''
-            cd 09_PluginGit
+            cd 17_Jenkinsfile
             java Main
         '''
     } 
