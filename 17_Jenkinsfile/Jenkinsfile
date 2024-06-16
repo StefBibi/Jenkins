@@ -1,0 +1,21 @@
+node {
+    stage('clone') {
+        git branch: 'main', credentialsId: 'f760ae42-bba7-4523-8ce4-bb23ac438611', url: 'https://github.com/StefBibi/Jenkins'
+        sh '''
+            pwd
+            ls -la
+        '''
+    }
+    stage('build') {
+        sh '''
+            cd 09_PluginGit
+            javac Main.java
+        '''
+    } 
+    stage('run') {
+        sh '''
+            cd 09_PluginGit
+            java Main
+        '''
+    } 
+}
