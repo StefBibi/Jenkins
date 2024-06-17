@@ -1,0 +1,19 @@
+node{
+  def app
+
+    stage('Clone') {
+        checkout scm
+    }
+
+    stage('Build image') {
+        app = docker.build("stefbibi/nginx-jenkins-xavki19")
+    }
+
+    stage('Test image') {
+        docker.image('stefbibi/nginx-jenkins-xavki19').withRun('-p 80:80') { c ->
+        sh 'docker ps'
+        sh 'curl localhost'
+	     }
+    }
+}
+
