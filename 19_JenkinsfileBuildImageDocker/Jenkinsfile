@@ -7,8 +7,10 @@ node{
 
     stage('Build image') {
 	sh 'pwd'
+	sh 'ls -la'
 	sh 'cd 19_JenkinsfileBuildImageDocker'
-        app = docker.build("stefbibi/nginx-jenkins-xavki19")
+        sh 'ls -la'
+	app = docker.build("stefbibi/nginx-jenkins-xavki19")
     }
 
     stage('Test image') {
