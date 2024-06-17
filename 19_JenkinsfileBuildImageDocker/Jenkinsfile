@@ -12,6 +12,7 @@ node{
     stage('Test image') {
         docker.image('stefbibi/nginx-jenkins-xavki19').withRun('-p 80:80') { c ->
         sh 'docker ps'
+        sh 'cat /usr/share/nginx/html/index.html'
         sh 'curl localhost'
 	     }
     }
