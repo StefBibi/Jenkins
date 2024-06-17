@@ -8,7 +8,7 @@ node{
     stage('Build image') {
 	sh 'pwd'
 	sh 'ls -la'
-	sh 'cd 19_JenkinsfileBuildImageDocker'
+	sh 'cd ./19_JenkinsfileBuildImageDocker'
         sh 'ls -la'
 	app = docker.build("stefbibi/nginx-jenkins-xavki19")
     }
