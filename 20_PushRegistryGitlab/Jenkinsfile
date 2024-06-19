@@ -1,0 +1,35 @@
+node {
+    // definition de 2 var :
+    // url de la registry = gitlab.com + nom user + nom projet
+    // nom de l'image a build
+    def registryProjet='registry.gitlab.com/stefbibi/xavki_20_pushregistry'
+    def IMAGE="${registryProjet}:version-${env.BUILD_ID}"
+
+    // clone du repo git
+    stage('Clone') {
+        git branch: 'main', url: 'https://github.com/StefBibi/Jenkins.git'
+    }
+
+    // build de l'image en ciblant le Dockerfile dans le répertoire 20_PushRegistryGitlab
+    // et on met l'image dans une variable objet
+    def img = stage('Build') {
+          docker.build("$IMAGE",  './20_PushRegistryGitlab')
+    }
+
+    // Run de l'obket image ci dessus
+    stage('Run') {
+          img.withRun("--name run-$BUILD_ID -p 80:80") { c ->
+            sh 'curl localhost'
+          }
+    }
+
+    // Push vers la registry en indiquant la localisation + un credential (identifiant pour la registry)
+    stage('Push') {
+          docker.withRegistry('https://registry.gitlab.com', 'Gitlab_stephane.bibi78') {
+              // on fait 2 tag de l'image : latest + tag standard
+              img.push 'latest'
+              img.push()
+          }
+    }
+
+}
