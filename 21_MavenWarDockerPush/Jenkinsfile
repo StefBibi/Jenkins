@@ -13,6 +13,7 @@ node {
           '''
     }
     def img = stage('Build') {
+          sh 'pwd'
           docker.build("$IMAGE",  './21_MavenWarDockerPush')
     }
     stage('Run') {
