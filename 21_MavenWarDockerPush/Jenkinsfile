@@ -6,8 +6,8 @@ node {
     }
     stage('Maven package'){
        steps {
-         sh 'pwd'
-         sh 'mvn clean package'
+          sh "pwd"
+          sh "ls -la"
        }
     }
     def img = stage('Build') {
