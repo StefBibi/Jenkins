@@ -2,7 +2,7 @@ node {
    def registryProjet='registry.gitlab.com/stefbibi/xavki-21-mavenwardockerpushregistry'
    def IMAGE="${registryProjet}:version-${env.BUILD_ID}"
     stage('Clone') {
-          git branch: 'origin/xavki_21_mvn_package', url: 'https://github.com/StefBibi/Jenkins.git'
+          git branch: 'xavki_21_mvn_package', url: 'https://github.com/StefBibi/Jenkins.git'
     }
     stage('Maven package'){
     	      sh 'pwd'
