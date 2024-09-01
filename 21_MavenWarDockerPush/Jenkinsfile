@@ -5,10 +5,9 @@ node {
           git branch: 'xavki_21_mvn_package', url: 'https://github.com/StefBibi/Jenkins.git'
     }
     stage('Maven package'){
-       steps {
-          sh "pwd"
-          sh "ls -la"
-       }
+       sh '''ls
+          pwd
+          '''
     }
     def img = stage('Build') {
           docker.build("$IMAGE",  './21_MavenWarDockerPush')
