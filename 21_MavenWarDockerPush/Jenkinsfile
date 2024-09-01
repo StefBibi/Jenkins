@@ -4,11 +4,11 @@ node {
     stage('Clone') {
           git branch: 'main', url: 'https://github.com/StefBibi/Jenkins.git'
     }
-    /*
     stage('Maven package'){
-            sh 'mvn package'
+    	    sh 'pwd'
+            sh 'cd ./21_MavenWarDockerPush/mywebtest'
+            sh 'mvn clean package'
     }
-    */
     def img = stage('Build') {
           docker.build("$IMAGE",  './21_MavenWarDockerPush')
     }
