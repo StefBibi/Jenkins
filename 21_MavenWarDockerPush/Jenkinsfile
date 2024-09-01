@@ -8,6 +8,7 @@ node {
     	      sh 'pwd'
             sh 'ls -la'
             sh 'cd 21_MavenWarDockerPush'
+            sh 'ls -la'
             sh 'cd mywebtest'
             sh 'pwd'
             sh 'ls'
