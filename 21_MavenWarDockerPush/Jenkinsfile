@@ -7,6 +7,9 @@ node {
     stage('Maven package'){
        sh '''ls
           pwd
+          cd 21_MavenWarDockerPush/mywebtest
+          ls
+          mvn clean package
           '''
     }
     def img = stage('Build') {
