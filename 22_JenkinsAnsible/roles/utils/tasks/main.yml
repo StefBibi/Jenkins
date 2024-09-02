@@ -5,6 +5,6 @@
     # update_cache: yes
     state: latest
   loop:
-    - vim
+    - htop
     - git
 ...
