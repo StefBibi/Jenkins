@@ -2,14 +2,18 @@ node {
    def registryProjet='registry.gitlab.com/stefbibi/xavki-21-mavenwardockerpushregistry'
    def IMAGE="${registryProjet}:version-${env.BUILD_ID}"
     stage('Clone') {
-          git branch: 'main', url: 'https://github.com/StefBibi/Jenkins.git'
+          git branch: 'xavki_21_mvn_package', url: 'https://github.com/StefBibi/Jenkins.git'
     }
-    /*
     stage('Maven package'){
-            sh 'mvn package'
+       sh '''ls
+          pwd
+          cd 21_MavenWarDockerPush/mywebtest
+          ls
+          mvn clean package
+          '''
     }
-    */
     def img = stage('Build') {
+          sh 'pwd'
           docker.build("$IMAGE",  './21_MavenWarDockerPush')
     }
     stage('Run') {
@@ -17,7 +21,7 @@ node {
             sh 'docker ps'
             sh 'netstat -ntaup'
             sh 'sleep 30s'
-            sh 'curl 127.0.0.1:8081'
+            sh 'curl 127.0.0.1:8081/mywebtest/'
             sh 'docker ps'
           }
     }
